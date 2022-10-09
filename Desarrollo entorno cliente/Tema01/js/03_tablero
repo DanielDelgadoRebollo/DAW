@@ -1,0 +1,14 @@
+var string_tablero = "";
+
+for (let i = 0; i < 8; i++) {
+
+    for (let j = 0; j < 4; j++) {
+      if(i%2==0){
+        string_tablero += "# " +" ";
+      }else{
+        string_tablero +=" #" +" ";
+      }
+    }
+    string_tablero +="\n";
+}
+console.log(string_tablero);

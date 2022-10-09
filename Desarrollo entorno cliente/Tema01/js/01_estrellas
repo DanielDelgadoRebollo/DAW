@@ -1,0 +1,24 @@
+var i, rep;
+   var solucion = "";
+   
+   var num_estrellas = prompt("Introduce numero de repeticiones");
+
+   if(num_estrellas > 0){
+   for (i = 1; i <= num_estrellas; i++) {
+       
+       
+       for (rep = 0; rep < i; rep++) {
+          
+           solucion += '+' +" ";
+       }
+       
+       solucion += "\n";
+   }
+   console.log(solucion)
+} else {
+    console.log("Vuelva a intentarlo de nuevo");
+    alert("Se va a recargar la pagina");
+    location.reload();
+}
+   
+   
