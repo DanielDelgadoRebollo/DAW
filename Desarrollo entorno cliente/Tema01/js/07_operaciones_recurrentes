@@ -1,0 +1,41 @@
+var num1 = prompt("Introduzca el valor que desea para el primer numero");
+var num2 = prompt("Introduzca el valor que desea para el segundo numero");
+
+
+var confirm = confirm("¿Quieres realizar las operaciones?");
+if(confirm){
+  setTimeout(suma,2000,num1,num2);
+  setTimeout(resta,4000,num1,num2);
+  setTimeout(multiplicacion,6000,num1,num2);
+  setTimeout(division,8000,num1,num2);
+  location.reload();
+
+}else{
+    alert("Se recarga la pagina");
+    location.reload();
+}
+
+function suma(num1 , num2){
+    suma = (Number(num1)+Number(num2));
+    console.log("La suma es: "+ suma);
+    return suma;
+}
+
+function resta(num1 , num2){
+    resta = (Number(num1)-Number(num2));
+    console.log("La resta es: "+ resta);
+    return resta;
+}
+
+function multiplicacion(num1 , num2){
+    multiplicacion = (Number(num1)*Number(num2));
+    console.log("La multiplicacion es: "+ multiplicacion);
+    return multiplicacion;
+}
+
+function division(num1 , num2){
+    division = (Number(num1)/Number(num2));
+    console.log("La division es: "+ division);
+    return division;
+}
+
