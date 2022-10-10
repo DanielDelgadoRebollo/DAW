@@ -1,12 +1,19 @@
-var frase = prompt("Introduce una frase");
-if(frase.length < 10){
-    alert("La longitud de la frase no es valida");
-}else{
-    var palabra = parseInt(frase.split(" ").length);
-    var letra = frase.trim();
-    var frases = parseInt(frase.split(".").length);
-    console.log("El numero de palabras es " + palabra);
-    console.log("El numero de letras es " + parseInt(letra.length));
-    console.log("El numero de frases es " + frases);
+var frase = prompt('Introduce una frase');
 
+if (frase.length < 10){
+    alert('Frase no válida, mínimo 10 letras')
 }
+
+console.log(frase);
+var letras = frase.replace(/\s+/g, '');
+var punto = letras.replace(/\.*/g,'');
+console.log(punto)
+console.log('El numero de letras es  ' + punto.length + ' letras');
+var palabras = frase.split(' ').length;
+console.log('El numero de palabras es : ' + palabras + ' palabras')
+var frase = frase.split('.').length;
+console.log('El numero de frases es :  ' + frase + ' ')
+alert('El dato introducido tiene: \n'+
+ punto.length + ' letras \n'+ 
+ palabras + ' palabras \n' + 
+ frase + ' frases');

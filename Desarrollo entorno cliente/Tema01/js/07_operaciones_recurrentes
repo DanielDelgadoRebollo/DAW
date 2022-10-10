@@ -8,7 +8,7 @@ if(confirm){
   setTimeout(resta,4000,num1,num2);
   setTimeout(multiplicacion,6000,num1,num2);
   setTimeout(division,8000,num1,num2);
-  location.reload();
+  
 
 }else{
     alert("Se recarga la pagina");
