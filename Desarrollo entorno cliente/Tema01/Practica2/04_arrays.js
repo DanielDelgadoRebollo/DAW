@@ -1,18 +1,32 @@
 var baraja = [];
-var palos = ["c", "p", "t", "d"];
-for (var i = 0; i< palos.length; i++ ){
-     for (var  j = 1; j<=12; j++){
-          baraja[baraja.length] = {p:palos[i], v:j};
+var palos = ["C","D","P","R"];
+
+for (let i = 0; i < 14; i++) {
+    if(i<=10){
+        palos.forEach(element => {
+            baraja.unshift(element + i);
+        });
     }
- 
-}
-var rojas = [];
-var negras = [];
-for (var i=0; i<baraja.length; i++) {
-    if (baraja[i].p==="c" || baraja[i].p==="d") {
-       rojas[rojas.length] = baraja[i];
+  switch(i){
+    case 11: palos.forEach(element =>{
+        baraja.unshift(element+"J");
+    }); 
+    break;
+    case 12: 
+    palos.forEach(element =>{
+        baraja.unshift(element+"Q");
+    }); 
+    break;
+    case 13: palos.forEach(element =>{
+        baraja.unshift(element+"K");
+    }); 
+    break;
   }
-   else {
-       negras[negras.length] = baraja[i];
-   }
+
 }
+
+console.log(_.shuffle(baraja));
+
+
+
+
