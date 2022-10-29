@@ -10,10 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
-<body>
-<nav class="navbar navbar-dark bg-dark">
-<div class="container-fluid">
-    <a class="navbar-brand" href="#">App MongoDB+ PHP + bootstrap</a>
+<body style="background-image: url(https://i.pinimg.com/736x/45/3d/74/453d7420dfeb2ca3ff0e41f33358b7e9.jpg)">
+<div>
+ <nav class="navbar navbar-dark bg-dark">
+ <div class="container-fluid">
+    <a class="navbar-brand" href="inicio.php">App MongoDB+ PHP + bootstrap</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -27,6 +28,7 @@
         </li>
     </div>
   </div>
-</nav>
+ </nav>
+</div>
 </body>
 </html>
