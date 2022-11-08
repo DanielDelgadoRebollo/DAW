@@ -29,18 +29,15 @@
     </div>
   </div>
  </nav>
- <div class="row">
-  <div class="col"><input type="text" class="form-control" placeholder="First name" aria-label="First name"></div>
-  <div class="col"><input type="text" class="form-control" placeholder="Last name" aria-label="Last name"></div>
+ <form action="welcome.php" method="post">
+ <div class="mb-3">
+  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="User" name="user">
 </div>
- <?php
-
-
-
-
-
-
- ?>
+<div class="mb-3">
+  <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Password" name="password">
+</div>
+  <input type="submit">
+</form>
 </div>
 </body>
 </html>
