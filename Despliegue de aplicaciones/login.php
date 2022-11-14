@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
-<body style="background-image: url(https://i.pinimg.com/736x/45/3d/74/453d7420dfeb2ca3ff0e41f33358b7e9.jpg)">
+<body style="background-image: url(https://i.pinimg.com/736x/45/3d/74/453d7420dfeb2ca3ff0e41f33358b7e9.jpg); background-repeat:no-repeat;">
 <div>
  <nav class="navbar navbar-dark bg-dark">
  <div class="container-fluid">
@@ -29,14 +29,16 @@
     </div>
   </div>
  </nav>
- <form action="welcome.php" method="post">
- <div class="mb-3">
-  <input type="text" class="form-control" id="formGroupExampleInput" placeholder="User" name="user">
-</div>
-<div class="mb-3">
-  <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Password" name="password">
-</div>
-  <input type="submit">
+ <h1 style="text-align:center; color:white;">Log in</h1>
+ <br>
+ <br>
+ <div style="height:200px; width:200px; margin:auto;">
+<form action="welcome.php" method="post">
+<div class="mb-2"><input type="text" class="form-control" id="formGroupExampleInput" placeholder="User" name="user"></div>
+<div class="col-auto"><input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" name="pass" placeholder="Password"></div>
+<div class="col-auto"><span id="passwordHelpInline" class="form-text">Must be 8-20 characters long.</span>
+<input type="submit">
+<div>
 </form>
 </div>
 </body>
