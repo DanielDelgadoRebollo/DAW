@@ -28,12 +28,34 @@
     </div>
   </div>
 </nav>
-    <div style="margin: left 400px;">
-    <div class="container w-4/12 mx-auto">
-        <p>Utiliza el captcha para poder seguir.</p>
-    <div class="h-captcha" data-sitekey="520d0bcf-d7df-409f-adea-f51f50122351"></div>
-    <button type="submit" mat-raised-button [href]="login.php">Pulse aqui para seguir</button> 
-    </div>
-</div>
+<h1>CRUD</h1>
+<a href="agregar.php" class="btn btn-primary">Agregar Usuario</a>
+<a href="eliminar.php" class="btn btn-danger">Eliminar</a>
+<a href="actualizar.php" class="btn btn-warning">Actualizar</a>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+  </tbody>
+</table>
 </body>
 </html>

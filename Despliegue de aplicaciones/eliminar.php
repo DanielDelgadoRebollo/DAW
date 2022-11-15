@@ -28,12 +28,29 @@
     </div>
   </div>
 </nav>
-    <div style="margin: left 400px;">
-    <div class="container w-4/12 mx-auto">
-        <p>Utiliza el captcha para poder seguir.</p>
-    <div class="h-captcha" data-sitekey="520d0bcf-d7df-409f-adea-f51f50122351"></div>
-    <button type="submit" mat-raised-button [href]="login.php">Pulse aqui para seguir</button> 
-    </div>
+<div style="width: 600px; height: 600px; margin:auto">
+<h1 style="text-align:center">Eliminar Registro</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+  </tbody>
+</table>
+<form action="" method="post">
+    <button class="btn btn-danger">Eliminar</button>
+</form>
 </div>
 </body>
 </html>

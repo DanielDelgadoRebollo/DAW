@@ -28,12 +28,23 @@
     </div>
   </div>
 </nav>
-    <div style="margin: left 400px;">
-    <div class="container w-4/12 mx-auto">
-        <p>Utiliza el captcha para poder seguir.</p>
-    <div class="h-captcha" data-sitekey="520d0bcf-d7df-409f-adea-f51f50122351"></div>
-    <button type="submit" mat-raised-button [href]="login.php">Pulse aqui para seguir</button> 
-    </div>
+<div style="width: 600px; height: 600px; margin:auto">
+<h1 style="text-align:center">Actualizar Registro</h1>
+<form action="" method="post">
+    <label for="nombre">Nombre</label>
+    <input type="text" class="form-control" id="nombre" name="nombre">
+    <label for="apellido">Apellido</label>
+    <input type="text" class="form-control" id="apellido" name="apellido">
+    <label for="telefono">Telefono</label>
+    <input type="text" class="form-control" id="telefono" name="telefono">
+    <label for="Mail">Mail</label>
+    <input type="text" class="form-control" id="Mail" name="Mail">
+    <label for="Direccion">Direccion</label>
+    <input type="text" class="form-control" id="Direccion" name="Direccion">
+    <label for="Localidad">Localidad</label>
+    <input type="text" class="form-control" id="Localidad" name="Localidad">
+    <a href="agregar.php" class="btn btn-warning" style="margin-top:10px">Actualizar Usuario</a>
+</form>
 </div>
 </body>
 </html>

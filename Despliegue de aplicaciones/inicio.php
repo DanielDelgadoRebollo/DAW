@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
-<body style="background-image: url(https://i.pinimg.com/736x/45/3d/74/453d7420dfeb2ca3ff0e41f33358b7e9.jpg)">
+<body>
 <div>
  <nav class="navbar navbar-dark bg-dark">
  <div class="container-fluid">
@@ -24,11 +24,15 @@
           <a class="nav-link active" aria-current="page" href="captcha.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="login.php">Registro</a>
+          <a class="nav-link" href="registro.php">Registro</a>
         </li>
     </div>
   </div>
  </nav>
+ <div style="text-align:center">
+  <h1>Bienvenidos a la aplicación realizada con MongoDB y PHP</h1>
+  <p style="color:#33B8FF">En esta app podremos listar, agregar, modificar y eliminar Datos</p>
+ </div>
 </div>
 </body>
 </html>
