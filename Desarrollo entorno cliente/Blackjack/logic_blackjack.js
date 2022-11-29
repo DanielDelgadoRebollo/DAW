@@ -1,10 +1,15 @@
 const carta = {
 palos: ['C','D','P','R'],
 numero : ['1','2','3','4','5','6','7','8','9','10','11','12','13'],
-valor : ''
 }
 
 var baraja = [];
+var manoJugador = [];
+var respuesta;
+var random = Math.round(Math.random()*52);
+var puntuacion = 0;
+
+
 
 function formarBaraja() {
     
@@ -34,14 +39,32 @@ function formarBaraja() {
 }
 
 function pedirCarta(){
-    
+     manoJugador.unshift(baraja[random]);
 }
 
+function comprobarValorDuplicado(valor){
+    return manoJugador.filter((element) => {
+         if(element == valor){
+            random = Math.round(Math.random()*52);
+         }
+    });
+}
 
+function elegirCartaRandom(){
+   random = Math.round(Math.random()*52);
+}
+function verMano(){
+       console.table(manoJugador);
+}
 
-var random = Math.round(Math.random()*56);
-var manoJugador = [];
-var respuesta;
+function comprobarPuntuacion(){
+      baraja.filter(element => {
+        if(element.indexOf(carta.numero)){
+            puntuacion += carta.numero;
+        }
+      });
+      console.log('Su puntuacion es de ' + puntuacion);
+}
 
 
 
@@ -58,13 +81,15 @@ var respuesta;
             case 1:console.log('Has entrado en el blackjack')
             formarBaraja();
             manoJugador.unshift(baraja[random])
-            console.log('Tu primera carta es ' + baraja[random])
-            respuesta = confirm('Deseas otra carta?')
-            if(confirm){
+            verMano();
+            do{
+                respuesta = confirm('Deseas otra carta?')
+                elegirCartaRandom();
+                comprobarValorDuplicado(random);
                 pedirCarta();
-            }else{
-                
-            }
+                verMano();
+                comprobarPuntuacion();
+            }while(respuesta == true)
 
                 break;
             case 2:console.log(reglas)
