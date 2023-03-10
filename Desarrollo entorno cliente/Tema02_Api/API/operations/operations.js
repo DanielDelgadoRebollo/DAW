@@ -1,18 +1,27 @@
 const mysql = require("mysql");
-const { router } = require("../app");
-let button = document.getElementById('addButton');
+/*let button = document.getElementById('addButton');
 let textFieldTeam = document.getElementById('teamName').value;
 button.addEventListener("click",function (){
 insert(textFieldTeam);
-})
+})*/
 
 
-function insert(connection,callback,textFieldTeam) {
-let insertQuery = 'INSERT INTO Equipo (id, nombre, goles_favor, goles_contra, puntos,posicion) VALUES ("?","?","0","0","0","0")';
-connection.query(insertQuery,[textFieldTeam],(err,result) => {
+function insert(connection,callback){
+let insertQuery = 'INSERT INTO equipo (id, nombre, goles_favor, goles_contra, puntos,posicion) VALUES ("Deniel","0","0","0","0")';
+connection.query(insertQuery,(err,result) => {
 if(err) throw err;
 callback(result);
 });
 }
 
-module.exports = {insert};
+function select(connection,callback){
+    let selectQuery = 'SELECT * from Equipo ';
+    connection.query(selectQuery ,(err,result)=>{
+     if(err) throw err;
+     callback(result);
+    });
+}
+
+
+
+module.exports = {insert,select};
