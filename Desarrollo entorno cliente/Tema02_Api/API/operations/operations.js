@@ -22,6 +22,14 @@ function select(connection,callback){
     });
 }
 
+function remove(connection,callback){
+    let removeQuery = 'DELETE from equipos where  ';
+    connection.query(removeQuery,(err,result)=>{
+        if(err) throw err;
+        callback(result);
+    });
+}
 
 
-module.exports = {insert,select};
+
+module.exports = {insert,select,remove};

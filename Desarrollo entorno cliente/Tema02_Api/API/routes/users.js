@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const connection = require('../controllerDB/basedatos.js');
-const { insert, select } = require('../operations/operations.js');
+const { insert, select, remove } = require('../operations/operations.js');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -21,7 +21,9 @@ router.get('/select',function(req,res,next){
 })
 
 router.get('/remove',function(req,res,next){
-
+    remove(connection,result =>{
+      res.json(result);
+    })
 });
 
 
