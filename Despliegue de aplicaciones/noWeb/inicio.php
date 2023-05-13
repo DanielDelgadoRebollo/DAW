@@ -1,5 +1,6 @@
 <?php
-require './template/header.php'
+require './template/header.php';
+session_start();
 ?>
  <div style="text-align:center">
   <h1>Bienvenidos a la aplicación realizada con MongoDB y PHP</h1>

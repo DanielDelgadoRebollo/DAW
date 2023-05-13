@@ -3,7 +3,7 @@ require '../template/header.php'
 ?>
 <div style="width: 600px; height: 600px; margin:auto">
 <h1 style="text-align:center">Agregar nuevo registro</h1>
-<form action="" method="post">
+<form action="mongoDB.php" method="post">
     <label for="nombre">Nombre</label>
     <input type="text" class="form-control" id="nombre" name="nombre">
     <label for="apellido">Apellido</label>

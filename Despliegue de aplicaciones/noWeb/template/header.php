@@ -27,6 +27,9 @@ SESSION_START();
           <a class="nav-link active" aria-current="page" href="/noWeb/captcha.php">Home</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/noWeb/login.php">Login</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/noWeb/crud/registro.php">Registro</a>
         </li>
     </div>
