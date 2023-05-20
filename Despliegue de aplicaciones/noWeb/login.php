@@ -1,5 +1,5 @@
 <?php
-require './template/header.php';
+require 'template/header.php';
 include 'process\connectionMysql.php';
 ?>
 <div style="height:400px; width:400px; margin:auto; margin-top : 100px;">

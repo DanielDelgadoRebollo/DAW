@@ -1,5 +1,4 @@
 <?php
-session_start();
 $captcha = "";
 $captchaHeight = 60;
 $captchaWidth = 140;

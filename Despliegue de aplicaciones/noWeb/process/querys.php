@@ -1,6 +1,7 @@
 <?php
-session_start();
+
 include 'connectionMysql.php';
+session_start();
 
 
 $user= $_POST["user"];
@@ -10,11 +11,18 @@ $searchUser ="Select * FROM usuarios WHERE name_user='$user' && password='$passw
 $query = $conn->query($searchUser);
 
 if($query->num_rows > 0){
-    echo "Welcome $user!";
+
+    $_SESSION = $_SESSION[$user];
+
 }else{
-    echo "thats not the way";
+    if(isset($_SERVER['HTTP_REFERER'])) {
+        $message = urlencode("After clicking the button, the form will submit to home.php. When, the page home.php loads, the previous page index.php is redirected. ");
+        header("Location:".$_SERVER[HTTP_REFERER]."?message=".$message);
+        die;
+    }
+    else
+      {
+         //it was not sent, perform your default actions here
+      }
 }
-
-
-
 ?>

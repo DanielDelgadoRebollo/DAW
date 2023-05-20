@@ -7,7 +7,6 @@ use MongoDB\Driver\Monitoring\CommandStartedEvent;
 use MongoDB\Driver\Monitoring\CommandSubscriber;
 use MongoDB\Driver\Monitoring\CommandSucceededEvent;
 use MongoDB\Operation\DatabaseCommand;
-
 use function MongoDB\Driver\Monitoring\addSubscriber;
 use function MongoDB\Driver\Monitoring\removeSubscriber;
 
@@ -17,16 +16,16 @@ class FailPointObserver implements CommandSubscriber
     private $failPointsAndServers = [];
 
     /**
-     * @see https://php.net/manual/en/mongodb-driver-monitoring-commandsubscriber.commandfailed.php
+     * @see https://www.php.net/manual/en/mongodb-driver-monitoring-commandsubscriber.commandfailed.php
      */
-    public function commandFailed(CommandFailedEvent $event): void
+    public function commandFailed(CommandFailedEvent $event)
     {
     }
 
     /**
-     * @see https://php.net/manual/en/mongodb-driver-monitoring-commandsubscriber.commandstarted.php
+     * @see https://www.php.net/manual/en/mongodb-driver-monitoring-commandsubscriber.commandstarted.php
      */
-    public function commandStarted(CommandStartedEvent $event): void
+    public function commandStarted(CommandStartedEvent $event)
     {
         $command = $event->getCommand();
 
@@ -42,15 +41,15 @@ class FailPointObserver implements CommandSubscriber
     }
 
     /**
-     * @see https://php.net/manual/en/mongodb-driver-monitoring-commandsubscriber.commandsucceeded.php
+     * @see https://www.php.net/manual/en/mongodb-driver-monitoring-commandsubscriber.commandsucceeded.php
      */
-    public function commandSucceeded(CommandSucceededEvent $event): void
+    public function commandSucceeded(CommandSucceededEvent $event)
     {
     }
 
-    public function disableFailPoints(): void
+    public function disableFailPoints()
     {
-        foreach ($this->failPointsAndServers as [$failPoint, $server]) {
+        foreach ($this->failPointsAndServers as list($failPoint, $server)) {
             $operation = new DatabaseCommand('admin', ['configureFailPoint' => $failPoint, 'mode' => 'off']);
             $operation->execute($server);
         }
@@ -58,12 +57,12 @@ class FailPointObserver implements CommandSubscriber
         $this->failPointsAndServers = [];
     }
 
-    public function start(): void
+    public function start()
     {
         addSubscriber($this);
     }
 
-    public function stop(): void
+    public function stop()
     {
         removeSubscriber($this);
     }

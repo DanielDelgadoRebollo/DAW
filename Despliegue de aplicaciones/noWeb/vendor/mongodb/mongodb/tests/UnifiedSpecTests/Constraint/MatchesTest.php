@@ -7,13 +7,13 @@ use MongoDB\Tests\FunctionalTestCase;
 use MongoDB\Tests\UnifiedSpecTests\EntityMap;
 use PHPUnit\Framework\ExpectationFailedException;
 use stdClass;
-
 use function hex2bin;
 use function preg_quote;
+use function version_compare;
 
 class MatchesTest extends FunctionalTestCase
 {
-    public function testMatchesDocument(): void
+    public function testMatchesDocument()
     {
         $c = new Matches(['x' => 1, 'y' => ['a' => 1, 'b' => 2]]);
         $this->assertResult(false, $c, ['x' => 1, 'y' => 2], 'Incorrect value');
@@ -23,28 +23,20 @@ class MatchesTest extends FunctionalTestCase
         $this->assertResult(true, $c, ['y' => ['b' => 2, 'a' => 1], 'x' => 1], 'Root and embedded key order is not significant');
     }
 
-    public function testFlexibleNumericComparison(): void
-    {
-        $c = new Matches(['x' => 1, 'y' => 1.0]);
-        $this->assertResult(true, $c, ['x' => 1.0, 'y' => 1.0], 'Float instead of expected int matches');
-        $this->assertResult(true, $c, ['x' => 1, 'y' => 1], 'Int instead of expected float matches');
-        $this->assertResult(false, $c, ['x' => 'foo', 'y' => 1.0], 'Different type does not match');
-    }
-
-    public function testDoNotAllowExtraRootKeys(): void
+    public function testDoNotAllowExtraRootKeys()
     {
         $c = new Matches(['x' => 1], null, false);
         $this->assertResult(false, $c, ['x' => 1, 'y' => 1], 'Extra keys in root are prohibited');
     }
 
-    public function testDoNotAllowOperators(): void
+    public function testDoNotAllowOperators()
     {
         $c = new Matches(['x' => ['$$exists' => true]], null, true, false);
         $this->assertResult(false, $c, ['x' => 1], 'Operators are not processed');
         $this->assertResult(true, $c, ['x' => ['$$exists' => true]], 'Operators are not processed but compared as-is');
     }
 
-    public function testOperatorExists(): void
+    public function testOperatorExists()
     {
         $c = new Matches(['x' => ['$$exists' => true]]);
         $this->assertResult(true, $c, ['x' => '1'], 'root-level key exists');
@@ -67,7 +59,7 @@ class MatchesTest extends FunctionalTestCase
         $this->assertResult(true, $c, ['x' => new stdClass()], 'embedded key missing');
     }
 
-    public function testOperatorType(): void
+    public function testOperatorType()
     {
         $c = new Matches(['x' => ['$$type' => 'string']]);
         $this->assertResult(true, $c, ['x' => 'foo'], 'string matches string type');
@@ -79,7 +71,7 @@ class MatchesTest extends FunctionalTestCase
         $this->assertResult(false, $c, ['x' => 1], 'integer does not match [string,bool] type');
     }
 
-    public function testOperatorMatchesEntity(): void
+    public function testOperatorMatchesEntity()
     {
         $entityMap = new EntityMap();
         $entityMap->set('integer', 1);
@@ -101,7 +93,7 @@ class MatchesTest extends FunctionalTestCase
         $this->assertResult(false, $c, ['x' => ['y' => 1, 'z' => 2]], 'value does not match object entity (root-level)');
     }
 
-    public function testOperatorMatchesHexBytes(): void
+    public function testOperatorMatchesHexBytes()
     {
         $c = new Matches(['$$matchesHexBytes' => 'DEADBEEF']);
         $this->assertResult(true, $c, hex2bin('DEADBEEF'), 'value matches hex bytes (root-level)');
@@ -112,7 +104,7 @@ class MatchesTest extends FunctionalTestCase
         $this->assertResult(false, $c, ['x' => hex2bin('DEADBEEF')], 'value does not match hex bytes (embedded)');
     }
 
-    public function testOperatorUnsetOrMatches(): void
+    public function testOperatorUnsetOrMatches()
     {
         $c = new Matches(['$$unsetOrMatches' => ['x' => 1]]);
         $this->assertResult(true, $c, null, 'null value is considered unset (root-level)');
@@ -127,28 +119,12 @@ class MatchesTest extends FunctionalTestCase
         $this->assertResult(false, $c, ['x' => ['y' => 1, 'z' => 2]], 'value does not match (embedded)');
     }
 
-    public function testOperatorUnsetOrMatchesWithNestedOperator(): void
+    public function testOperatorSessionLsid()
     {
-        // Nested $$unsetOrMatches is redundant, but should behave the same as if it was omitted
-        $c = new Matches(['x' => ['$$unsetOrMatches' => ['$$unsetOrMatches' => ['y' => 1]]]]);
-        $this->assertResult(true, $c, new stdClass(), 'missing value is considered unset (embedded)');
-        $this->assertResult(false, $c, ['x' => null], 'null value is not considered unset (embedded)');
-        $this->assertResult(true, $c, ['x' => ['y' => 1]], 'value matches (embedded)');
-        $this->assertResult(false, $c, ['x' => ['y' => 1, 'z' => 2]], 'value does not match (embedded)');
+        if (version_compare($this->getFeatureCompatibilityVersion(), '3.6', '<')) {
+            $this->markTestSkipped('startSession() is only supported on FCV 3.6 or higher');
+        }
 
-        $c = new Matches(['x' => ['$$unsetOrMatches' => ['$$exists' => true]]]);
-        $this->assertResult(true, $c, new stdClass(), 'missing value is considered unset (embedded)');
-        $this->assertResult(true, $c, ['x' => null], 'null value is not considered unset (embedded)');
-        $this->assertResult(true, $c, ['x' => ['y' => 1]], 'non-null value is not considered unset (embedded)');
-
-        $c = new Matches(['x' => ['$$unsetOrMatches' => ['$$exists' => false]]]);
-        $this->assertResult(true, $c, new stdClass(), 'missing value is considered unset (embedded)');
-        $this->assertResult(false, $c, ['x' => null], 'null value is not considered unset (embedded)');
-        $this->assertResult(false, $c, ['x' => ['y' => 1]], 'non-null value is not considered unset (embedded)');
-    }
-
-    public function testOperatorSessionLsid(): void
-    {
         $session = $this->manager->startSession();
 
         $entityMap = new EntityMap();
@@ -173,7 +149,7 @@ class MatchesTest extends FunctionalTestCase
     /**
      * @dataProvider errorMessageProvider
      */
-    public function testErrorMessages($expectedMessageRegex, Matches $constraint, $actualValue): void
+    public function testErrorMessages($expectedMessageRegex, Matches $constraint, $actualValue)
     {
         try {
             $constraint->evaluate($actualValue);
@@ -258,7 +234,7 @@ class MatchesTest extends FunctionalTestCase
     /**
      * @dataProvider operatorErrorMessageProvider
      */
-    public function testOperatorSyntaxValidation($expectedMessage, Matches $constraint): void
+    public function testOperatorSyntaxValidation($expectedMessage, Matches $constraint)
     {
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage($expectedMessage);
@@ -308,7 +284,7 @@ class MatchesTest extends FunctionalTestCase
         ];
     }
 
-    private function assertResult($expected, Matches $constraint, $value, string $message = ''): void
+    private function assertResult($expected, Matches $constraint, $value, string $message = '')
     {
         $this->assertSame($expected, $constraint->evaluate($value, '', true), $message);
     }
