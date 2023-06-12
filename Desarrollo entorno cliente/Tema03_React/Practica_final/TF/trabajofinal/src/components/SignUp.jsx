@@ -9,7 +9,7 @@ function Register() {
     const auth = getAuth();
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
-    
+  
   
     
     function submit(){

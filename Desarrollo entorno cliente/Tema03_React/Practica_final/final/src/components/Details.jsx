@@ -1,37 +1,24 @@
 import { useEffect, useState } from "react";
 import { todasLasBanderas}  from "./funciones";
-import { Link } from "react-router-dom";
 
-function Home() {
-  const [banderas,setFlags] = useState([]);
-  let vacio = [];
+
+
+function Details(){
+   const [banderas,setFlags] = useState([]);
   
-  
+   
+
 
 
   useEffect(()=>{
-   todasLasBanderas(setFlags);
+   
+ todasLasBanderas(setFlags);
+ 
 
   },[setFlags]);
-   
-  const handleOnClick = (e) =>{
 
-    //Obtengo el pais que se encuentra asociado a la carta
-
-    
-    banderas.filter((event)=>{
-      if(event.name == e.name){
-         vacio = banderas;
-         console.log(vacio.value);
-      }
-    })
-    
-
-    return vacio;
-  }
-
-  return (
-    <div className='container'>
+   return(
+        <div className='container'>
     {banderas && banderas.map((e) => (
         <div className="card mb-3" style={{maxWidth: "540px;"}}>
         <div className="row g-0">
@@ -41,13 +28,17 @@ function Home() {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">{e.name.common}</h5>
-              <button variant="primary" onClick={()=>(handleOnClick(e.name.common))}><Link to='/Details'>Ver detalles</Link> </button>
+              <p>Capital : {e.capital}</p>
+              <p>Population : {e.population}</p>
+              <p>Region : {e.region}</p>
+
             </div>
           </div>
         </div>
       </div>
       ))}
   </div>
-);
+   );
 }
-export default Home;
+
+export default Details;
